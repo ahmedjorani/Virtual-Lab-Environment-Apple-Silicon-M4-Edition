@@ -7,10 +7,8 @@ Vagrant.configure("2") do |config|
     debian_gui.vm.box = "bento/debian-12"
     debian_gui.vm.box_architecture = "arm64"
     debian_gui.vm.hostname = "debian-gui"
-    debian_gui.vm.network "private_network", ip: "192.168.56.10"
 
     debian_gui.vm.provider "vmware_fusion" do |vmf|
-      vmf.name = "Debian-gui"
       vmf.memory = "1024"
       vmf.cpus = 1
       vmf.gui = true
@@ -59,10 +57,8 @@ EOF2
     ubuntu_cli.vm.box = "bento/ubuntu-22.04"
     ubuntu_cli.vm.box_architecture = "arm64"
     ubuntu_cli.vm.hostname = "ubuntu-cli"
-    ubuntu_cli.vm.network "private_network", ip: "192.168.56.11"
 
     ubuntu_cli.vm.provider "vmware_fusion" do |vmf|
-      vmf.name = "Ubuntu-cli"
       vmf.memory = "1024"
       vmf.cpus = 1
       vmf.gui = false
