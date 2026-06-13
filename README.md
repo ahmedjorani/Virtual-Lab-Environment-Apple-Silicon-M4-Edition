@@ -2,7 +2,12 @@
 ## VMware Fusion + Vagrant | ARM64-Compatible
 
 > **Note:** This is an updated version of the original lab, adapted for Apple Silicon (M1/M2/M3/M4) Macs.
-> The original used VirtualBox which does not support ARM. This version uses VMware Fusion with ARM-compatible Bento boxes.
+> Two Vagrantfile options are provided — choose the one that matches your setup:
+>
+> | File | Provider | Cost |
+> |---|---|---|
+> | `Vagrantfile-VMware` | VMware Fusion 13+ | Free (personal use) |
+> | `Vagrantfile-VirtualBox` | VirtualBox 7.2.8 ARM64 | Free |
 
 ---
 
@@ -52,74 +57,66 @@ lsblk
 
 ---
 
-## Prerequisites Installation
-
-### Step 1: Install VMware Fusion
-
-Download VMware Fusion 13+ (free for personal use):
-https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion
-
-Install and open it at least once before continuing.
-
 ---
 
-### Step 2: Install Vagrant
+## 🚀 Quick Start
 
+### Step 1 — Install Vagrant 2.4.0+
 ```bash
 brew install --cask vagrant
 ```
-
 Or download from: https://developer.hashicorp.com/vagrant/downloads
 
-> ⚠️ **Vagrant 2.4.0 or later is required** for `box_architecture` ARM64 support.
+> ⚠️ Vagrant 2.4.0 or later is required for ARM64 support.
 
 ---
 
-### Step 3: Install Vagrant VMware Utility
+### Step 2 — Install Your Provider
 
-Download and install from:
-https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility
-
-Then install the Vagrant VMware plugin:
-
+**Option A — VMware Fusion (recommended):**
+1. Install VMware Fusion 13+ (free for personal use) → https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion
+2. Install Vagrant VMware Utility → https://developer.hashicorp.com/vagrant/docs/providers/vmware/vagrant-vmware-utility
+3. Run in terminal:
 ```bash
 vagrant plugin install vagrant-vmware-desktop
 ```
 
----
-
-### Step 4: Install Git (Optional)
-
-```bash
-brew install git
-```
+**Option B — VirtualBox 7.2.8 (ARM64):**
+1. Download and install VirtualBox 7.2.8 for Apple Silicon → https://download.virtualbox.org/virtualbox/7.2.8/VirtualBox-7.2.8-173730-macOSArm64.dmg
 
 ---
 
-### Step 5: Verify Installation
-
-```bash
-vagrant --version
-vagrant plugin list        # should show vagrant-vmware-desktop
-```
-
----
-
-## Usage Instructions
-
-### Initial Setup
-
+### Step 3 — Clone the Repo
 ```bash
 git clone https://github.com/ahmedjorani/Virtual-Lab-Environment-Apple-Silicon-M4-Edition.git
 cd Virtual-Lab-Environment-Apple-Silicon-M4-Edition
+```
+
+---
+
+### Step 4 — Run the Setup Script
+The repo includes a `setup.sh` script that automatically sets the correct Vagrantfile for your chosen provider. You do **not** need to rename any files manually.
+
+```bash
+bash setup.sh
+```
+
+The script will ask you to choose between VMware Fusion or VirtualBox, then automatically copy the correct Vagrantfile for you.
+
+---
+
+### Step 5 — Start the VMs
+```bash
 vagrant up
 ```
+
+---
 
 ### Start Individual VMs
 
 ```bash
-vagrant up debian-gui    # Debian XFCE desktop
-vagrant up ubuntu-cli    # Ubuntu CLI + extra disks
+vagrant up debian-gui    # Debian XFCE desktop only
+vagrant up ubuntu-cli    # Ubuntu CLI only
 ```
 
 ---
@@ -220,10 +217,12 @@ vagrant up --debug          # Verbose output for debugging
 
 ```
 Virtual-Lab-Environment-Apple-Silicon-M4-Edition/
-├── Vagrantfile       # VM definitions and provisioning (VMware Fusion / ARM64)
-├── README.md         # This file
+├── setup.sh                 # Run this first — selects your provider
+├── _Vagrantfile-VMware      # VMware Fusion provider (ARM64)
+├── _Vagrantfile-VirtualBox  # VirtualBox 7.2.8 provider (ARM64)
+├── README.md                # This file
 ├── .gitignore
-└── .vagrant/         # Vagrant internal state (do not commit)
+└── .vagrant/                # Vagrant internal state (do not commit)
 ```
 
 ---
