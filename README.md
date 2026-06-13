@@ -11,13 +11,13 @@
 This Vagrant setup creates two minimal virtual machines for learning and practice:
 
 1. **Debian XFCE** (`debian-gui`) — Debian 12 (Bookworm) with XFCE desktop
-   - Box: `bento/debian-12` (ARM64)
+   - Box: `bento/debian-12` with `box_architecture = "arm64"` (explicitly ARM64)
    - IP: `192.168.56.10`
    - Memory: 1 GB | CPU: 1 core
    - XFCE desktop environment (lightweight) with LightDM auto-login
 
 2. **Ubuntu CLI** (`ubuntu-cli`) — Ubuntu 22.04 LTS, command-line only
-   - Box: `bento/ubuntu-22.04` (ARM64)
+   - Box: `bento/ubuntu-22.04` with `box_architecture = "arm64"` (explicitly ARM64)
    - IP: `192.168.56.11`
    - Memory: 1 GB | CPU: 1 core
    - Headless (no GUI)
@@ -71,6 +71,8 @@ brew install --cask vagrant
 
 Or download from: https://developer.hashicorp.com/vagrant/downloads
 
+> ⚠️ **Vagrant 2.4.0 or later is required** for `box_architecture` ARM64 support.
+
 ---
 
 ### Step 3: Install Vagrant VMware Utility
@@ -108,8 +110,8 @@ vagrant plugin list        # should show vagrant-vmware-desktop
 ### Initial Setup
 
 ```bash
-git clone https://github.com/ahmedjorani/Linux-Virtual-Lab-Environment.git
-cd Linux-Virtual-Lab-Environment
+git clone https://github.com/ahmedjorani/Virtual-Lab-Environment-Apple-Silicon-M4-Edition.git
+cd Virtual-Lab-Environment-Apple-Silicon-M4-Edition
 vagrant up
 ```
 
@@ -205,7 +207,7 @@ vagrant up --debug          # Verbose output for debugging
 ### Extra Disks Not Appearing
 
 - Run `vagrant reload` to re-attach disks after a restart
-- Requires Vagrant ≥ 2.2.x with VMware disk support
+- Requires Vagrant ≥ 2.4.0 with VMware disk support (2.4.0+ required for `box_architecture` ARM64 support)
 
 ### Performance
 
@@ -217,8 +219,8 @@ vagrant up --debug          # Verbose output for debugging
 ## File Structure
 
 ```
-Linux-Virtual-Lab-Environment/
-├── Vagrantfile       # VM definitions and provisioning (VMware Fusion / ARM)
+Virtual-Lab-Environment-Apple-Silicon-M4-Edition/
+├── Vagrantfile       # VM definitions and provisioning (VMware Fusion / ARM64)
 ├── README.md         # This file
 ├── .gitignore
 └── .vagrant/         # Vagrant internal state (do not commit)

@@ -5,6 +5,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "debian-gui" do |debian_gui|
     debian_gui.vm.box = "bento/debian-12"
+    debian_gui.vm.box_architecture = "arm64"
     debian_gui.vm.hostname = "debian-gui"
     debian_gui.vm.network "private_network", ip: "192.168.56.10"
 
@@ -56,6 +57,7 @@ EOF2
 
   config.vm.define "ubuntu-cli" do |ubuntu_cli|
     ubuntu_cli.vm.box = "bento/ubuntu-22.04"
+    ubuntu_cli.vm.box_architecture = "arm64"
     ubuntu_cli.vm.hostname = "ubuntu-cli"
     ubuntu_cli.vm.network "private_network", ip: "192.168.56.11"
 
