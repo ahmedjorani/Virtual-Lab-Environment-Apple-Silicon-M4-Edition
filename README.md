@@ -1,5 +1,5 @@
 # Virtual Lab Environment — Apple Silicon (M4) Edition
-## VMware Fusion + Vagrant | ARM64-Compatible
+## VMware Fusion / VirtualBox + Vagrant | ARM64-Compatible
 
 > **Note:** This is an updated version of the original lab, adapted for Apple Silicon (M1/M2/M3/M4) Macs.
 > Two Vagrantfile options are provided — choose the one that matches your setup:
